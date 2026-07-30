@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Tic-Tac-Toe Nexus</title>
+    <title>Classic Tic-Tac-Toe</title>
     <style>
         @layer base {
             html, body {
@@ -128,20 +128,20 @@
         <!-- 1. Player Setup Form Configuration -->
         <section class="block-setup py-stack-lg" data-state="active">
             <form class="composition-cluster">
-                <h2 class="block-setup-title">Configure Contenders</h2>
+                <h2 class="block-setup-title">Match Setup</h2>
                 
                 <div class="flex flex-col gap-1">
-                    <label for="p1-name" class="block-setup-label">Player X (Nexus X)</label>
-                    <input type="text" id="p1-name" placeholder="Enter Name" class="block-setup-input" required value="Nexus X" />
+                    <label for="p1-name" class="block-setup-label">Player One (X)</label>
+                    <input type="text" id="p1-name" placeholder="Enter Name" class="block-setup-input" required value="Player One" />
                 </div>
                 
                 <div class="flex flex-col gap-1">
-                    <label for="p2-name" class="block-setup-label">Player O (Void O)</label>
-                    <input type="text" id="p2-name" placeholder="Enter Name" class="block-setup-input" required value="Void O" />
+                    <label for="p2-name" class="block-setup-label">Player Two (O)</label>
+                    <input type="text" id="p2-name" placeholder="Enter Name" class="block-setup-input" required value="Player Two" />
                 </div>
 
                 <button type="submit" class="block-button" data-variant="primary">
-                    INITIALIZE MATCH
+                    BEGIN MATCH
                 </button>
             </form>
         </section>
@@ -156,15 +156,15 @@
             <!-- Turn Indicator -->
             <div class="mb-stack-lg transition-all duration-500 transform" id="turn-indicator">
                 <div class="flex flex-col items-center gap-stack-sm">
-                    <span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.3em] uppercase opacity-50">Current Sequence</span>
+                    <span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.3em] uppercase opacity-50">Active Turn</span>
                     <div class="flex items-center gap-4">
                         <div class="block-turn-marker" id="turn-marker-x" data-active="true">
                             <span class="material-symbols-outlined text-[20px]">close</span>
-                            <span class="font-headline-md text-headline-md">PLAYER X</span>
+                            <span class="font-headline-md text-headline-md">PLAYER ONE</span>
                         </div>
                         <div class="block-turn-marker" id="turn-marker-o" data-active="false">
                             <span class="material-symbols-outlined text-[20px]">radio_button_unchecked</span>
-                            <span class="font-headline-md text-headline-md">PLAYER O</span>
+                            <span class="font-headline-md text-headline-md">PLAYER TWO</span>
                         </div>
                     </div>
                 </div>
@@ -229,12 +229,12 @@
                 <div class="grid grid-cols-2 gap-stack-md">
                     <!-- Player X Score -->
                     <div class="block-score-card" id="score-x-card" data-player="X" data-active="true">
-                        <span class="block-score-card-label">Nexus X</span>
+                        <span class="block-score-card-label">Player One</span>
                         <span class="block-score-card-value" id="score-x">00</span>
                     </div>
                     <!-- Player O Score -->
                     <div class="block-score-card" id="score-o-card" data-player="O" data-active="false">
-                        <span class="block-score-card-label">Void O</span>
+                        <span class="block-score-card-label">Player Two</span>
                         <span class="block-score-card-value" id="score-o">00</span>
                     </div>
                 </div>
@@ -242,7 +242,7 @@
                 <div class="flex items-center justify-between gap-stack-md">
                     <button class="block-button flex-1" data-variant="outline" data-action="reset">
                         <span class="material-symbols-outlined text-[18px] transition-transform duration-500">refresh</span>
-                        RESET ARCHIVE
+                        RESET BOARD
                     </button>
                     <button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline/30 text-on-surface-variant hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
                         <span class="material-symbols-outlined">settings</span>
@@ -254,9 +254,9 @@
         <!-- Win Modal (Enhanced with dialog role and accessibilities) -->
         <div class="block-modal" id="win-modal" data-state="closed" role="dialog" aria-modal="true" aria-labelledby="winner-text">
             <div class="block-modal-card" id="modal-card">
-                <span class="block-modal-subtitle">Transmission Received</span>
-                <h2 class="block-modal-title" id="winner-text">PLAYER X WINS</h2>
-                <button class="w-full py-4 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest rounded-lg hover:brightness-110 transition-all shadow-lg shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface" id="modal-cta-button">RE-ENGAGE</button>
+                <span class="block-modal-subtitle">Match Result</span>
+                <h2 class="block-modal-title" id="winner-text">PLAYER ONE WINS</h2>
+                <button class="w-full py-4 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest rounded-lg hover:brightness-110 transition-all shadow-lg shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface" id="modal-cta-button">PLAY AGAIN</button>
             </div>
         </div>
     </main>

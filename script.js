@@ -42,8 +42,8 @@ const gameController = (function(gameboard, createPlayer) {
 
   // Private Closure State
   let players = [
-    createPlayer("Nexus X", "X"),
-    createPlayer("Void O", "O")
+    createPlayer("Player One", "X"),
+    createPlayer("Player Two", "O")
   ];
   let activePlayerIndex = 0;
   let isOver = false;
@@ -74,7 +74,7 @@ const gameController = (function(gameboard, createPlayer) {
   const getActivePlayer = () => players[activePlayerIndex];
 
   // Public Methods
-  const initGame = (p1Name = "Player 1", p2Name = "Player 2") => {
+  const initGame = (p1Name = "Player One", p2Name = "Player Two") => {
     players = [
       createPlayer(p1Name, "X"),
       createPlayer(p2Name, "O")
@@ -125,7 +125,7 @@ const gameController = (function(gameboard, createPlayer) {
         status: "WIN",
         activePlayer: { name: winner.getName(), marker: winner.getMarker() },
         winningLine,
-        message: `${winner.getName()} (${winner.getMarker()}) wins!`
+        message: `${winner.getName()} wins!`
       };
     }
 
@@ -136,7 +136,7 @@ const gameController = (function(gameboard, createPlayer) {
         success: true,
         status: "DRAW",
         winningLine: null,
-        message: "It's a tie!"
+        message: "Match drawn."
       };
     }
 
@@ -149,14 +149,14 @@ const gameController = (function(gameboard, createPlayer) {
       status: "CONTINUE",
       activePlayer: { name: nextPlayer.getName(), marker: nextPlayer.getMarker() },
       winningLine: null,
-      message: `${nextPlayer.getName()}'s turn (${nextPlayer.getMarker()}).`
+      message: `${nextPlayer.getName()}'s turn.`
     };
   };
 
   const getGameState = () => ({
     board: gameboard.getBoard(),
     activePlayer: {
-      name: getActivePlayer() ? getActivePlayer().getName() : "Player 1",
+      name: getActivePlayer() ? getActivePlayer().getName() : "Player One",
       marker: getActivePlayer() ? getActivePlayer().getMarker() : "X"
     },
     isOver,
@@ -241,8 +241,8 @@ const DisplayController = (function(gameController) {
   // Event Handlers
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const p1Name = document.getElementById('p1-name').value.trim() || 'Nexus X';
-    const p2Name = document.getElementById('p2-name').value.trim() || 'Void O';
+    const p1Name = document.getElementById('p1-name').value.trim() || 'Player One';
+    const p2Name = document.getElementById('p2-name').value.trim() || 'Player Two';
     
     gameController.initGame(p1Name, p2Name);
     
@@ -300,7 +300,7 @@ const DisplayController = (function(gameController) {
       updateScores();
       showWinnerModal(result.message, result.activePlayer.marker, result.winningLine);
     } else if (result.status === 'DRAW') {
-      showWinnerModal("Stalemate! Match drawn.", null, null);
+      showWinnerModal("Match drawn.", null, null);
     }
   };
 
