@@ -112,7 +112,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-s);
-  width: min(100%, 500px);
+  width: 27rem;
   aspect-ratio: 1 / 1;
   margin-left: auto;
   margin-right: auto;
