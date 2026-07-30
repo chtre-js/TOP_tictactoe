@@ -74,7 +74,7 @@ body {
 /* --- COMPOSITION LAYER --- */
 .region-game {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   padding-left: var(--space-l);
   padding-right: var(--space-l);
   margin-left: auto;
@@ -112,14 +112,14 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-s);
-  width: min(100%, 420px);
+  width: min(100%, 500px);
   aspect-ratio: 1 / 1;
   margin-left: auto;
   margin-right: auto;
 }
 
 .composition-scoreboard-wrapper {
-  width: min(100%, 420px);
+  width: min(100%, 500px);
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -136,8 +136,8 @@ body {
 .composition-controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-m);
+  justify-content: center;
+  width: 100%;
 }
 
 /* --- UTILITY LAYER --- */
@@ -214,7 +214,9 @@ body {
 /* Player Registration Form Card */
 .block-setup {
   width: 100%;
-  max-width: 420px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -470,31 +472,6 @@ body {
   transform: rotate(180deg);
 }
 
-/* Settings Button Block */
-.block-settings-btn {
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(132, 148, 149, 0.3);
-  color: var(--color-on-surface-variant);
-  background-color: transparent;
-  cursor: pointer;
-  transition: color 0.3s ease, border-color 0.3s ease;
-}
-
-.block-settings-btn:hover {
-  color: var(--color-primary);
-  border-color: rgba(0, 220, 230, 0.5);
-}
-
-.block-settings-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--color-primary-glow);
-}
-
 /* Scoreboard Cards */
 .block-score-card {
   background-color: var(--color-surface-container);
@@ -596,7 +573,7 @@ body {
 /* X Marker: spin-in from -45deg */
 .marker-x {
   color: var(--color-primary);
-  font-size: 4rem;
+  font-size: 5.5rem;
   filter: drop-shadow(0 0 15px rgba(0, 220, 230, 0.4));
   transform: translate(-50%, -50%) scale(0) rotate(-45deg);
 }
@@ -604,7 +581,7 @@ body {
 /* O Marker: scale-in */
 .marker-o {
   color: var(--color-secondary);
-  font-size: 4rem;
+  font-size: 5.5rem;
   filter: drop-shadow(0 0 15px rgba(255, 36, 228, 0.4));
   transform: translate(-50%, -50%) scale(0);
 }
