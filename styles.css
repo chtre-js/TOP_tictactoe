@@ -1,0 +1,456 @@
+:root {
+  /* Brand Color Palette */
+  --color-surface: #101415;
+  --color-surface-variant: #323537;
+  --color-surface-container: #1d2022;
+  --color-surface-container-high: #272a2c;
+  --color-surface-container-highest: #323537;
+  --color-background: #101415;
+  --color-on-surface: #e0e3e5;
+  --color-on-surface-variant: #b9cacb;
+  --color-outline: #849495;
+  
+  --color-primary: #e3fdff;         /* Soft Cyan */
+  --color-on-primary: #00373a;    /* Deep Cyan */
+  --color-primary-glow: #00dce6;   /* Bright Cyan */
+  
+  --color-secondary: #fface8;     /* Soft Pink */
+  --color-on-secondary: #520049;  /* Deep Pink */
+  --color-secondary-glow: #ff24e4; /* Bright Magenta */
+
+  /* Typography Fonts */
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Geist', sans-serif;
+  --font-display: 'Inter', sans-serif;
+
+  /* Fluid Spacing Matrix */
+  --space-xs: clamp(0.25rem, 0.18rem + 0.36vw, 0.5rem);       /* 4px - 8px */
+  --space-s: clamp(0.5rem, 0.36rem + 0.71vw, 1rem);          /* 8px - 16px */
+  --space-m: clamp(1rem, 0.86rem + 0.71vw, 1.5rem);          /* 16px - 24px */
+  --space-l: clamp(1.5rem, 1.36rem + 0.71vw, 2rem);          /* 24px - 32px */
+  --space-xl: clamp(2rem, 1.71rem + 1.43vw, 3rem);           /* 32px - 48px */
+  --space-xxl: clamp(3rem, 2.5rem + 2.5vw, 5rem);            /* 48px - 80px */
+
+  /* Fluid Typography Scale */
+  --step--1: clamp(0.7rem, 0.66rem + 0.18vw, 0.75rem);      /* 11px - 12px */
+  --step-0: clamp(0.9rem, 0.88rem + 0.09vw, 1rem);          /* 14px - 16px */
+  --step-2: clamp(1.25rem, 1.18rem + 0.36vw, 1.5rem);       /* 20px - 24px */
+  --step-5: clamp(2.25rem, 2.04rem + 1.07vw, 3rem);         /* 36px - 48px */
+  --step-7: clamp(3.5rem, 3.14rem + 1.79vw, 4.5rem);        /* 56px - 72px */
+
+  /* Custom Spring & Expo Curves */
+  --ease-out-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-expo: cubic-bezier(0.3, 0, 0.8, 0.15);
+}
+
+/* --- COMPOSITION LAYER --- */
+
+.region-game {
+  width: 100%;
+  max-width: 500px;
+  padding-left: var(--space-l);
+  padding-right: var(--space-l);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.composition-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.composition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-s);
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+/* --- BLOCK LAYER --- */
+
+/* Player Registration Form Card */
+.block-setup {
+  width: 100%;
+  max-width: 420px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-m);
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition: opacity 400ms ease, transform 400ms var(--ease-out-spring), display 400ms allow-discrete;
+}
+
+.block-setup-title {
+  font-family: var(--font-label);
+  font-size: var(--step--1);
+  color: var(--color-primary);
+  opacity: 0.8;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: var(--space-s);
+}
+
+.block-setup-label {
+  font-family: var(--font-label);
+  font-size: var(--step--1);
+  color: var(--color-on-surface-variant);
+  opacity: 0.7;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.block-setup-input {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: var(--space-s);
+  color: var(--color-on-surface);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.block-setup-input:focus {
+  border-color: rgba(0, 220, 230, 0.5); /* Primary glow */
+  box-shadow: 0 0 0 1px rgba(0, 220, 230, 0.5);
+}
+
+#p2-name:focus {
+  border-color: rgba(255, 36, 228, 0.5); /* Secondary glow */
+  box-shadow: 0 0 0 1px rgba(255, 36, 228, 0.5);
+}
+
+/* Custom Interactive Cell Buttons */
+.block-square {
+  position: relative;
+  aspect-ratio: 1;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.1s ease;
+  cursor: pointer;
+}
+
+.block-square:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.block-square:active {
+  transform: scale(0.95);
+}
+
+.block-square:focus-visible {
+  outline: 2px solid rgba(0, 220, 230, 1);
+  outline-offset: 2px;
+}
+
+/* SVG Line Overlay inside the Glass Board */
+.block-board {
+  position: relative;
+  backdrop-filter: blur(24px);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-s);
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+/* Button Component Block */
+.block-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  font-family: var(--font-label);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.75rem var(--space-m);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.block-button[data-variant="primary"] {
+  background-color: var(--color-primary-glow);
+  color: var(--color-on-primary);
+  font-weight: 700;
+}
+
+.block-button[data-variant="primary"]:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 220, 230, 0.2);
+}
+
+.block-button[data-variant="outline"] {
+  border: 1px solid rgba(132, 148, 149, 0.3);
+  color: var(--color-on-surface-variant);
+  background-color: transparent;
+}
+
+.block-button[data-variant="outline"]:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 220, 230, 0.5);
+}
+
+/* Turn Indicators */
+.block-turn-marker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border-width: 1px;
+  transition: all 0.35s ease;
+}
+
+#turn-marker-x {
+  border-color: rgba(0, 220, 230, 0.2);
+  background-color: rgba(0, 220, 230, 0.1);
+  color: var(--color-primary);
+}
+
+#turn-marker-o {
+  border-color: rgba(255, 36, 228, 0.2);
+  background-color: rgba(255, 36, 228, 0.1);
+  color: var(--color-secondary);
+}
+
+/* Scoreboard Cards */
+.block-score-card {
+  background-color: var(--color-surface-container);
+  padding: var(--space-s);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom-width: 2px;
+  transition: opacity 0.35s ease, border-color 0.35s ease;
+}
+
+.block-score-card-label {
+  font-family: var(--font-label);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.block-score-card-value {
+  font-family: var(--font-display);
+  font-size: var(--step-5);
+  color: var(--color-on-surface);
+}
+
+.block-score-card[data-player="X"] {
+  border-bottom-color: rgba(0, 220, 230, 0.4);
+}
+.block-score-card[data-player="X"] .block-score-card-label {
+  color: rgba(0, 220, 230, 0.6);
+}
+
+.block-score-card[data-player="O"] {
+  border-bottom-color: rgba(255, 36, 228, 0.2);
+}
+.block-score-card[data-player="O"] .block-score-card-label {
+  color: rgba(255, 36, 228, 0.6);
+}
+
+/* Win Overlay Modal Block */
+.block-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(16, 20, 21, 0.8);
+  backdrop-filter: blur(12px);
+  transition: opacity 400ms ease, visibility 400ms ease;
+}
+
+.block-modal-card {
+  background-color: var(--color-surface-container-high);
+  padding: var(--space-l);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 20rem;
+  width: 100%;
+  transform: scale(0.95) translateY(16px);
+  opacity: 0;
+  transition: transform 500ms var(--ease-out-spring), opacity 400ms ease;
+}
+
+.block-modal-subtitle {
+  font-family: var(--font-label);
+  font-size: var(--step--1);
+  color: var(--color-primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-s);
+}
+
+.block-modal-title {
+  font-family: var(--font-display);
+  font-size: var(--step-5);
+  color: var(--color-on-surface);
+  margin-bottom: var(--space-m);
+}
+
+/* --- MOTION & HARDWARE ACCELERATION EFFECTS --- */
+
+/* X and O markers absolute layout inside cell wrapper */
+.marker-x, .marker-o {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 450ms var(--ease-out-spring), opacity 300ms ease;
+}
+
+/* X Marker: spin-in from -45deg */
+.marker-x {
+  transform: translate(-50%, -50%) scale(0) rotate(-45deg);
+}
+
+/* O Marker: scale-in */
+.marker-o {
+  transform: translate(-50%, -50%) scale(0);
+}
+
+/* SVG Line sweep */
+#winning-line-svg {
+  transition: opacity 300ms ease;
+}
+
+#winning-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 800ms var(--ease-out-expo), filter 400ms ease;
+}
+
+/* --- EXCEPTIONS LAYER (Data Attributes) --- */
+
+/* Player Registration states */
+.block-setup[data-state="inactive"] {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+  display: none;
+}
+.block-setup[data-state="active"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+  display: block;
+}
+
+/* Workspace states */
+.game-workspace[data-state="inactive"] {
+  opacity: 0.3;
+  pointer-events: none;
+  display: none !important; /* Screen-reader trap */
+}
+.game-workspace[data-state="active"] {
+  opacity: 1;
+  pointer-events: auto;
+  display: flex !important;
+}
+
+/* Indicators */
+.block-turn-marker[data-active="false"] {
+  opacity: 0.3;
+  border-color: transparent;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+.block-turn-marker[data-active="true"] {
+  opacity: 1;
+}
+
+.block-score-card[data-active="false"] {
+  opacity: 0.6;
+}
+.block-score-card[data-active="true"] {
+  opacity: 1;
+}
+.block-score-card[data-player="O"][data-active="true"] {
+  border-bottom-color: rgba(255, 36, 228, 0.6);
+}
+
+/* Modal overlays */
+.block-modal[data-state="closed"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.block-modal[data-state="closed"] .block-modal-card {
+  transform: scale(0.95) translateY(16px);
+  opacity: 0;
+}
+
+.block-modal[data-state="open"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.block-modal[data-state="open"] .block-modal-card {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Cell Cell-Marker Exception Toggles */
+.marker-x[data-visible="false"],
+.marker-o[data-visible="false"] {
+  opacity: 0;
+}
+
+.marker-x[data-visible="true"] {
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  opacity: 1;
+}
+
+.marker-o[data-visible="true"] {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* SVG Active Line Draw */
+.winning-active #winning-line {
+  stroke-dashoffset: 0;
+}
+
+/* --- ACCESSIBILITY SAFEGUARDS (Reduced Motion) --- */
+@media (prefers-reduced-motion: reduce) {
+  .marker-x, .marker-o, #winning-line, .block-modal, .block-modal-card, .block-setup, .game-workspace {
+    transition: opacity 150ms ease !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .marker-x {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg) !important;
+  }
+  #winning-line {
+    stroke-dashoffset: 0 !important;
+  }
+}
