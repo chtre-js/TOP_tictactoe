@@ -135,6 +135,7 @@ const gameController = (function(gameboard, createPlayer) {
       return {
         success: true,
         status: "DRAW",
+        activePlayer: { name: getActivePlayer().getName(), marker: getActivePlayer().getMarker() },
         winningLine: null,
         message: "Match drawn."
       };
