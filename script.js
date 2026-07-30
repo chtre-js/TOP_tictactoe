@@ -294,7 +294,9 @@ const DisplayController = (function(gameController) {
 
     renderBoard();
     updateStatus(result.message);
-    updateTurnVisuals(result.activePlayer);
+    if (result.activePlayer) {
+      updateTurnVisuals(result.activePlayer);
+    }
 
     if (result.status === 'WIN') {
       updateScores();
