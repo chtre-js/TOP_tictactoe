@@ -32,7 +32,7 @@ const gameboard = (function() {
     return {getBoard, markCell, resetBoard}
 })();
 
-const gameController = (function(boardModule, playerFactory) {
+const gameController = (function(gameboard, createPlayer) {
   // Private Constants
   const WINNING_COMBINATIONS = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
@@ -72,14 +72,14 @@ const gameController = (function(boardModule, playerFactory) {
   // Public Methods
   const initGame = (p1Name = "Player 1", p2Name = "Player 2") => {
     players = [
-      playerFactory(p1Name, "X"),
-      playerFactory(p2Name, "O")
+      createPlayer(p1Name, "X"),
+      createPlayer(p2Name, "O")
     ];
     resetGame();
   };
 
   const resetGame = () => {
-    boardModule.resetBoard();
+    gameboard.resetBoard();
     activePlayerIndex = 0;
     isOver = false;
     winner = null;
@@ -97,7 +97,7 @@ const gameController = (function(boardModule, playerFactory) {
     }
 
     const currentMarker = getActivePlayer().getMarker();
-    const markSuccessful = boardModule.markCell(cellIndex, currentMarker);
+    const markSuccessful = gameboard.markCell(cellIndex, currentMarker);
 
     if (!markSuccessful) {
       return {
@@ -107,7 +107,7 @@ const gameController = (function(boardModule, playerFactory) {
       };
     }
 
-    const currentBoard = boardModule.getBoard();
+    const currentBoard = gameboard.getBoard();
     const winningCombo = checkWin(currentBoard);
 
     if (winningCombo) {
@@ -148,7 +148,7 @@ const gameController = (function(boardModule, playerFactory) {
   };
 
   const getGameState = () => ({
-    board: boardModule.getBoard(),
+    board: gameboard.getBoard(),
     activePlayer: {
       name: getActivePlayer().getName(),
       marker: getActivePlayer().getMarker()
@@ -159,7 +159,6 @@ const gameController = (function(boardModule, playerFactory) {
     winningLine: winningLine ? [...winningLine] : null
   });
 
-  // Export public API
   return {
     initGame,
     resetGame,
@@ -167,6 +166,3 @@ const gameController = (function(boardModule, playerFactory) {
     getGameState
   };
 })(gameboard, createPlayer);
-
-// Example test run
-gameController.initGame("Chérif", "Ilel");
